@@ -1,4 +1,0 @@
-Prefix SDFS::minim.$.Sources.MyProjects.Libraries.AI.Genann.!GenannTests.Source
-squeeze     SDFS::minim.$.Sources.MyProjects.Libraries.AI.Genann.!GenannTests.!RunImage
-Set Sourcery$ReturnCode <Sys$ReturnCode>
-Prefix
