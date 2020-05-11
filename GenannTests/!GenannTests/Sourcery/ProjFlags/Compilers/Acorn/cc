@@ -1,0 +1,30 @@
+# Sourcery project flag settings
+# Generated on Wed May  6 15:49:21 2020
+
+~misc:
+debug:N
+define:N
+misc:N
+optimisespc:Y
+optimisetme:N
+strict:Y
+throwback:Y
+features:N
+module:N
+unix:N
+iso:N
+stubsg:N
+stack:N
+disablestack:N
+stubs26:N
+stubs32:N
+dataflow:Y
+nofuncnames:N
+objdeclare:Y
+eimplicit:N
+wdepdecl:N
+wimpreturn:N
+winventing:N
+wnarrow:N
+wnonansi:N
+wuseofequals:N

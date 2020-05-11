@@ -1,0 +1,3 @@
+o.test:	h.minctest
+o.test:	c.test
+o.test:	GenannLib:h.genann

@@ -1,0 +1,23 @@
+# Sourcery project flag settings
+# Generated on Mon Dec  6 11:05:50 2004
+
+~misc:
+debug:N
+define:N
+misc:N
+optimisespc:Y
+optimisetme:N
+strict:Y
+throwback:Y
+features:N
+module:N
+unix:N
+iso:N
+stubsg:N
+stack:N
+disablestack:N
+stubs26:N
+stubs32:N
+dataflow:Y
+nofuncnames:N
+objdeclare:Y

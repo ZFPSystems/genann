@@ -1,0 +1,5 @@
+# RPM source definition
+# Generated on Wed May  6 03:55:34 2020
+
+.genann:.Compiled.Acorn.c:
+.genann:.Compiled.h:

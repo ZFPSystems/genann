@@ -1,0 +1,10 @@
+# Sourcery project flag settings
+# Generated on Mon Oct  4 15:36:31 2004
+
+~misc:
+authenticate:N
+encrypt:N
+nocvsrc:N
+quiet:N
+reallyquiet:N
+rootdir:Y

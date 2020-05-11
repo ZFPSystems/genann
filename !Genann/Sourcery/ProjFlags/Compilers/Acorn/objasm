@@ -1,0 +1,10 @@
+# Sourcery project flag settings
+# Generated on Sun Nov 14 13:14:18 2004
+
+~misc:
+arm:N
+bigend:N
+debug:N
+littleend:N
+throwback:Y
+thumb:N

@@ -1,0 +1,27 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Genann Neural Network Library for RISC OS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+DISCLAIMER
+This is a port to RISC OS of a C library called Genann (read the intro for more details). The library was ported to RISC OS by Paolo Fabio Zaino.
+By downloading and using this library you accept the license and the terms of use:
+The library and all the code and info in this repository are provided as is and I am not liable for any issue/problems you may have using this library.
+
+INTRO
+This is the RISC OS port of Genann library, a minimal, well-tested C library for training and using feedforward Artificial Neural Network (ANN).
+
+The primary focus of the original Genann library is to be simple, fast, reliable and hackable, all stuff that is focus of RISC OS as well so I thought the two would match wonderfuly and it seems they do.
+
+I have put attention to make sure Genann works on both Acorn/ROOL DDE and GCC for RISC OS, so you are free to choose your favorite compiler as well as being able to use Genann also on old Acorn Archimedes, Acorn A series and Acorn RiscPC for the retrocoders among you.
+
+Genann is also threadsafe so, in theory, you could use it with libraries like !Vista in Acorn/ROOL DDE C++ as well as with PThreads on GCC.
+
+HOW TO USE IT
+Look at the various example code in the GenannExamples directory, they can be executed and they also come with source code to look at (from the original Genann authors, I just ported the code to compile and work on RISC OS).
+
+For more info look at the README/MD in the !Genann directory.
+
+There is also a test suite that will provide you with a raw performance analisys and full functionality test of the library on your specific platform, look in GenannTests for it.
+
+Enjoy!
+

@@ -1,0 +1,10 @@
+# Sourcery project flag settings
+# Generated on Mon Feb 23 18:31:35 2004
+
+
+delete:N
+externalsymboltable:N
+extract:N
+insert:N
+listlibrary:N
+listsymbols:N
