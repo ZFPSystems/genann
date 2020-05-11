@@ -1,4 +1,0 @@
-Prefix SDFS::minim.$.Sources.MyProjects.Libraries.AI.Genann.!Genann.Source
-libfile  -o  -c  SDFS::minim.$.Sources.MyProjects.Libraries.AI.Genann.!Genann.genann  -v @.^.Sourcery.Via
-Set Sourcery$ReturnCode <Sys$ReturnCode>
-Prefix
