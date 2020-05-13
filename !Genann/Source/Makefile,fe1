@@ -13,18 +13,19 @@ ModSqzflags = -o $@
 
 
 # Final targets:
-@.^.!Genann:   @.o.genann
-	libfile $(LibFileflags) @.o.genann
+@.^.o.genann: @.o.genann
+           libfile $(LibFileflags) @.o.genann
 
 
 # User-editable dependencies:
 
 
 # Static dependencies:
-@.o.genann:   @.c.genann
-	cc $(CCflags) -o @.o.genann @.c.genann
+@.o.genann: @.c.genann
+          cc $(CCflags) -o @.o.genann @.c.genann
 
 
 # Dynamic dependencies:
+
 o.genann:	c.genann
 o.genann:	h.genann

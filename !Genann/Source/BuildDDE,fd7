@@ -2,16 +2,14 @@
 | By Paolo Fabio Zaino
 
 | Temporarly set this directory as root
-dir <Obey$Dir>
+Dir <Obey$Dir>
 
 | Make the Library
-make
-
-| Move it in the right place:
-copy @.^.!Genann @.^.o.genann FD ~C
+WimpSlot -min 1024k
+amu THROWBACK=-throwback
 
 | Copy library header:
-copy @.h.genann @.^.h.genann F ~C
+IfThere @.h.genann Then copy @.h.genann @.^.h.genann F ~C
 
 | Reset
 dir &

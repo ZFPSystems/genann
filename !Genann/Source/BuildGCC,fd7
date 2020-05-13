@@ -1,0 +1,19 @@
+| Genann Library builder
+| By Paolo Fabio Zaino
+
+| Temporarly set this directory as root
+Dir <Obey$Dir>
+
+| Make the Library
+WimpSlot -min 16384k
+make -f MakeFileGCC
+
+| Move it in the right place:
+|IfThere @.o.genann Then copy @.o.genann @.^.o.genann FD ~C
+
+| Copy library header:
+IfThere @.h.genann Then copy @.h.genann @.^.h.genann F ~C
+
+| Reset
+dir &
+

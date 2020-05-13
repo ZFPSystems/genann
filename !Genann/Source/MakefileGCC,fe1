@@ -1,0 +1,27 @@
+# Project:   !Genann
+
+
+# Toolflags:
+CCflags = -O3 -mthrowback -c -Wl,-s
+CMHGflags =
+LibFileflags = -o  -c  $@
+Squeezeflags = -o $@
+ModSqzflags = -o $@
+
+
+# Final targets:
+$@.^.o.genannGCC: o.genannGCC
+	copy @.o.genannGCC @.^.o.genannGCC
+
+# User-editable dependencies:
+
+
+# Static dependencies:
+o.genannGCC: c.genann
+	gcc $(CCflags) -o $@ c.genann
+
+
+# Dynamic dependencies:
+
+o.genannGCC:	c.genann
+o.genannGCC:	h.genann
