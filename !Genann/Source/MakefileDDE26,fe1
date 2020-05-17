@@ -2,7 +2,7 @@
 
 
 # Toolflags:
-CCflags = -c -depend !Depend -throwback         -strict -fa  -fh     -Ospace  -apcs 3/32/fpe2/swst/fp/nofpr
+CCflags  = -c -depend !Depend -throwback -strict -fa -fh -Ospace -apcs 3/26
 C++flags = -c -depend !Depend -IC: -throwback
 Linkflags = -aif -c++ -o $@
 ObjAsmflags = -throwback -NoCache -depend !Depend
@@ -13,19 +13,19 @@ ModSqzflags = -o $@
 
 
 # Final targets:
-@.^.o.genann: @.o.genann
-           libfile $(LibFileflags) @.o.genann
+@.^.o.genannDDE26: @.o.genannDDE26
+           libfile $(LibFileflags) @.o.genannDDE26
 
 
 # User-editable dependencies:
 
 
 # Static dependencies:
-@.o.genann: @.c.genann
-          cc $(CCflags) -o @.o.genann @.c.genann
+@.o.genannDDE26: @.c.genann
+          cc $(CCflags) -o @.o.genannDDE26 @.c.genann
 
 
 # Dynamic dependencies:
 
-o.genann:	c.genann
-o.genann:	h.genann
+o.genannDDE26:	c.genann
+o.genannDDE26:	h.genann

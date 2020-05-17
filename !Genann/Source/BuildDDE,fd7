@@ -6,7 +6,21 @@ Dir <Obey$Dir>
 
 | Make the Library
 WimpSlot -min 1024k
-amu THROWBACK=-throwback
+
+| Make DDE 32bit APCS 3 version  (good for RO5.x on all 32bit ARMs)
+amu THROWBACK=-throwback -f MakeFileDDE32
+
+| Make DDE 32bit APCS 3 version  (good for RO5.x on Iyonix)
+amu THROWBACK=-throwback -f MakeFileDDE32ARMv5
+
+| Make DDE 26bit APCS 3 version  (good for RO3.x/RO4.x on ARM6xx/ARM7xx may work on ARM3 too)
+amu THROWBACK=-throwback -f MakeFileDDE26
+
+| Make DDE 26bit APCS 3 version and optimize code for ARMv2 (good for RO3.x with ARM2 or ARM3 CPUs)
+amu THROWBACK=-throwback -f MakeFileDDE26ARMv2
+
+| Make DDE 26bit APCS 3 version and optimize code for ARMv2 (good for RO3.x with ARM2 or ARM3 CPUs)
+amu THROWBACK=-throwback -f MakeFileDDE26ARMv2
 
 | Copy library header:
 IfThere @.h.genann Then copy @.h.genann @.^.h.genann F ~C
