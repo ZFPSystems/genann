@@ -1,30 +1,100 @@
-| Genann Library builder
+| Genann Library builder for Acorn/ROOL DDE
 | By Paolo Fabio Zaino
 
+| Set the following variables to match your building configuration:
+
+| *** BEGIN StubG-ness (here only for historical reasons, ignore it)
+| This is for compatibility with the past work I did on this lib.
+| Please, please, please, if you don't know what StubG is just don't use it
+| leave the above and the StubG make below commented out, your life
+| will be fine, mine will be too.
+|Set StubG$Dir  &.AcornC/C++.Export.StubG.Libraries.clib | If you want to do 26/32bit indipendent builds you MUST use StubG
+							| To use stubG you have to download the latest from RISC OS Ltd (it's a Zip file)
+							| at the moment of writing this the latest release is 0.04 and can be found here:
+							| http://riscos.com/support/developers/stubg/index.html
+							| download it, unzip it somewhere and then use the path where you unzipped it to
+							| populate the StubG$Dir value above.
+|Set StubG$Path <StubG$Dir>.
+|*** End of StubG-ness a memory from the past...
+
+
 | Temporarly set this directory as root
+Set Return$Dir &
 Dir <Obey$Dir>
 
 | Make the Library
 WimpSlot -min 1024k
 
-| Make DDE 32bit APCS 3 version  (good for RO5.x on all 32bit ARMs)
+| Please note: If you want to rebuild the Library on your system then
+|              uncomment one of the lines below corresponding to your
+|              desired ARM Architecture and RISC OS APCS version.
+|
+|              If you want to build a StubG release (aka universal)
+|              then uncomment the line here below with MakeFileDDESG
+
+| Make DDE StubG
+| should work on everything as long as your RO has the right CLib
+| (may requires !System provided by ROOL)
+| For applications that should run everywhere it's probably a good
+| idea to use this one
+amu THROWBACK=-throwback -f MakeFileDDE
+
+
+|
+| 32bit support:
+|
+
+| Make DDE 32bit APCS 3 version
+| good for: RO5.x on all 32bit ARMs
+| (requires !System provided by ROOL)
 amu THROWBACK=-throwback -f MakeFileDDE32
 
-| Make DDE 32bit APCS 3 version  (good for RO5.x on Iyonix)
+| Make DDE 32bit APCS 3 version
+| Should optimize for: RO5.x on Iyonix
 amu THROWBACK=-throwback -f MakeFileDDE32ARMv5
 
-| Make DDE 26bit APCS 3 version  (good for RO3.x/RO4.x on ARM6xx/ARM7xx may work on ARM3 too)
+| Make DDE 32bit APCS 3
+| Should optimize for: RPi 1
+amu THROWBACK=-throwback -f MakeFileDDE32ARMv6
+
+| Make DDE 32bit APCS 3
+| Should optimize for: RPi 2
+amu THROWBACK=-throwback -f MakeFileDDE32ARMv7
+
+| Make DDE 32bit APCS 3
+| Should optimize for: RPi 3
+amu THROWBACK=-throwback -f MakeFileDDE32ARMv8
+
+
+|
+| 26bit support:
+|
+
+| Make DDE 26bit APCS 3 version
+| Should optimize for: RO3.xy/RO4.xy on
+|                      ARM6xx/ARM7xx
+|                      may work on ARM3 too
 amu THROWBACK=-throwback -f MakeFileDDE26
 
-| Make DDE 26bit APCS 3 version and optimize code for ARMv2 (good for RO3.x with ARM2 or ARM3 CPUs)
+| Make DDE 26bit APCS 3 version and
+| optimize code for ARMv2
+| Should optimize for: RO3.x with ARM2,
+|                      ARM250 or ARM3 CPUs.
+| (this is for old Archimedes and Acorn Axxxx series)
 amu THROWBACK=-throwback -f MakeFileDDE26ARMv2
 
-| Make DDE 26bit APCS 3 version and optimize code for ARMv2 (good for RO3.x with ARM2 or ARM3 CPUs)
-amu THROWBACK=-throwback -f MakeFileDDE26ARMv2
+| Make DDE 26bit APCS 3 version
+| Should Optimize for: RO4.x with StrongARM
+amu THROWBACK=-throwback -f MakeFileDDE26ARMv4
+
+
+|
+| Final tocuhes:
+|
 
 | Copy library header:
 IfThere @.h.genann Then copy @.h.genann @.^.h.genann F ~C
 
 | Reset
-dir &
+dir <Return$Dir>
 

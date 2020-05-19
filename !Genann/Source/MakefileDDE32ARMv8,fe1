@@ -1,0 +1,31 @@
+# Project:   !Genann
+
+
+# Toolflags:
+CCflags   = -c -depend !Depend -throwback -strict -fa -fh -Ospace -apcs 3/32/fpe2/swst/fp/nofpr -arch 8
+C++flags = -c -depend !Depend -IC: -throwback
+Linkflags = -aif -c++ -o $@
+ObjAsmflags = -throwback -NoCache -depend !Depend
+CMHGflags =
+LibFileflags = -o  -c  $@
+Squeezeflags = -o $@
+ModSqzflags = -o $@
+
+
+# Final targets:
+@.^.o.genannDDE32ARMv8: @.o.genannDDE32ARMv8
+           libfile $(LibFileflags) @.o.genannDDE32ARMv8
+
+
+# User-editable dependencies:
+
+
+# Static dependencies:
+@.o.genannDDE32ARMv8: @.c.genann
+          cc $(CCflags) -o @.o.genannDDE32ARMv8 @.c.genann
+
+
+# Dynamic dependencies:
+
+o.genannDDE32ARMv8:	c.genann
+o.genannDDE32ARMv8:	h.genann
