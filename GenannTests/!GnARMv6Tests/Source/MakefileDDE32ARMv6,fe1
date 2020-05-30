@@ -1,0 +1,23 @@
+# Project:   !GenannTests
+
+
+# Toolflags:
+ccflags =  -c -depend !Depend -throwback         -strict -fa  -fh     -Ospace  -apcs 3/32/fpe2/swst/fp/nofpr -arch 6 -IGenannLib:,C:
+linkflags =    -AIF      -rescan    -c++ -Output $@
+squeezeflags =
+
+# Final targets:
+@.^.!RunImage:   @.o.test
+        link $(linkflags) @.o.test C:o.stubs C:o.ansilib C:o.ansilibm \
+        GenannLib:o.genannDDE32ARMv6
+        squeeze     ^.!RunImage
+
+
+
+# User-editable dependencies:
+
+# Static dependencies:
+@.o.test:   @.c.test
+        cc $(ccflags) -o @.o.test @.c.test
+
+# Dynamic dependencies:

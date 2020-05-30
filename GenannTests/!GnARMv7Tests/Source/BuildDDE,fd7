@@ -1,0 +1,17 @@
+| Genann Library Tests builder for Acorn/ROOL DDE
+| By Paolo Fabio Zaino
+
+| Temporarly set this directory as root
+Set Return$Dir &
+Dir <Obey$Dir>
+
+| Make the Library
+WimpSlot -min 1024k
+
+| Make DDE 32bit APCS 3 version
+| Should optimize for: RO5.x on Iyonix
+amu THROWBACK=-throwback -f MakeFileDDE32ARMv7
+
+| Reset
+dir <Return$Dir>
+

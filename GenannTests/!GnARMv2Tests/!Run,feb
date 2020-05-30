@@ -1,0 +1,9 @@
+| Genann Simple Neural Library in C
+| RISC OS Port by Paolo Fabio Zaino
+| Original license: zlib License
+
+Set GenannTests$Dir <Obey$Dir>
+
+Wimpslot -min 1024K -max 2048K
+Run <GenannTests$Dir>.!RunImage
+

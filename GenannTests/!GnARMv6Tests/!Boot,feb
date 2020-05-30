@@ -1,0 +1,7 @@
+| Genann Simple Neural Library in C
+| RISC OS Port by Paolo Fabio Zaino
+| Original license: zlib License
+| This is just a test code
+
+Set GenannTests$Dir <Obey$Dir>
+
