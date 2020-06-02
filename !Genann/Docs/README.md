@@ -146,6 +146,7 @@ For DDE:
 Where X Y are optionals and should be specified only when you want to use an architecture optimized version of the library, while for general compilations just using GenannDDE is more than enough.
 
 X can be either 26 or 32
+
 Y can be ARMv2 or ARMv4 or ARMv5 or ARMv6 or ARMv7
 
 So for example:
