@@ -1,0 +1,43 @@
+-------------------------------------------------
+- Genann Neural Network Library port to RISC OS -
+-------------------------------------------------
+
+_ Release 1.0.0 _
+
+--------------
+- DISCLAIMER -
+--------------
+This is a port to RISC OS of a C library called Genann (read the intro for more details). The library was ported to RISC OS by Paolo Fabio Zaino.
+By downloading and using this library you accept the license and the terms of use:
+The library and all the code and info in this repository are provided as is and I am not liable for any issue/problems you may have using this library.
+
+On specific request on the license of the author of the original Genann Library, given that I am modifying the lib from time to time to adapt/improve it as needed for RISC OS and ARM CPUs, I have to declare that this one IS NOT the original Genann library.
+
+This port is specific to RISC OS operating system and ARM CPU Architecture, so it may not work on other OS and/or CPU architectures. If you want to use Genann library on other Operating Systems and/or CPU Architectures please refer to the original library and not this one, thanks!
+
+---------
+- INTRO -
+---------
+This is the RISC OS port of Genann library, a minimal, well-tested C library for training and using feedforward Artificial Neural Network (ANN).
+
+The primary focus of the original Genann library is to be simple, fast, reliable and hackable, all stuff that is focus of RISC OS as well so I thought the two would match wonderfuly and it seems they do.
+
+This library compiled is only ~6KB and provides all the minimal requirements to create powerful Artificial Neural Netowrks to use in you rown software for example to do Image Recognition or other uses typical of ANN. Because of it's extremely small size it can be used virtually in any ARM based Platform (included old Acorn Archimedes, A series, RiscPCs etc... for the retrocoders among you) or the Pico board.
+
+I have pre-compiled and added make file to generate code compatible with ARMv2 Architecture, ARMv4, ARMv5, ARMv6 and ARMv7 and should work fine also on ARMv8.
+
+I have put attention to make sure Genann works on both Acorn/ROOL DDE (Desktop Developemnt Environment, ex AcornC/C++) and GCC for RISC OS, so you are free to choose your favorite compiler.
+
+Genann is also threadsafe so, in theory, you could use it with libraries like !Vista in Acorn/ROOL DDE C++ as well as with PThreads on GCC.
+
+--------------
+- HOW TO USE -
+--------------
+For info and details on how to use this library with your own code please look at the Docs directory contained in the !Genann Library directory, thanks.
+
+---------------
+- FINAL NOTES -
+---------------
+Thanks for evaluating my port and effort and eventually use it in your code, and, most of all, thanks for coding on RISC OS :)
+
+- Paolo

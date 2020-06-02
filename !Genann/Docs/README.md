@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/codeplea/genann.svg?branch=master)](https://travis-ci.org/codeplea/genann)
 
 <img alt="Genann logo" src="https://codeplea.com/public/content/genann_logo.png" align="right" />
 
@@ -23,16 +22,20 @@ functions and little extra.
 
 ## Building
 
-Genann is self-contained in two files: `genann.c` and `genann.h`. To use Genann, simply add those two files to your project.
+Genann is self-contained in the !Genann.Source directory. I already added a lot of Makefiles to make sure you can easly re-build it for your specific C Compiler on RISC OS and your specific ARM Architecture variant.
+
+So open !Genann.Source with your Desktop Filer and then edit the BuildDDE or BuildGCC TaskObey files to "enable/disable" the builds you need/don't need.
+
+If you let it as default then it will try to build every Genann variant supported by your compiler of choice.
 
 ## Example Code
 
 Four example programs are included with the source code.
 
-- [`example1.c`](./example1.c) - Trains an ANN on the XOR function using backpropagation.
-- [`example2.c`](./example2.c) - Trains an ANN on the XOR function using random search.
-- [`example3.c`](./example3.c) - Loads and runs an ANN from a file.
-- [`example4.c`](./example4.c) - Trains an ANN on the [IRIS data-set](https://archive.ics.uci.edu/ml/datasets/Iris) using backpropagation.
+- [`!GenannEx1`](GenannExamples.!GenannEx1.Source.c.example1) - Trains an ANN on the XOR function using backpropagation.
+- [`!GenannEx2`](GenannExamples.!GenannEx1.Source.c.example2) - Trains an ANN on the XOR function using random search.
+- [`!GenannEx3`](GenannExamples.!GenannEx1.Source.c.example3) - Loads and runs an ANN from a file.
+- [`!GenannEx4`](GenannExamples.!GenannEx1.Source.c.example4) - Trains an ANN on the [IRIS data-set](https://archive.ics.uci.edu/ml/datasets/Iris) using backpropagation.
 
 ## Quick Example
 
@@ -45,7 +48,7 @@ We then train it on a set of labeled data using backpropagation and ask it to
 predict on a test data point:
 
 ```C
-#include "genann.h"
+#include "GenannLib:genann.h"
 
 /* Not shown, loading your training and test data. */
 double **training_data_input, **training_data_output, **test_data_input;
@@ -100,7 +103,7 @@ void genann_train(genann const *ann, double const *inputs,
 
 `genann_train()` will preform one update using standard backpropogation. It
 should be called by passing in an array of inputs, an array of expected outputs,
-and a learning rate. See *example1.c* for an example of learning with
+and a learning rate. See *GenannExamples.!GenannEx1.Source.c.example1* for an example of learning with
 backpropogation.
 
 A primary design goal of Genann was to store all the network weights in one
@@ -121,7 +124,7 @@ an example of training using random hill climbing search.
 genann *genann_read(FILE *in);
 void genann_write(genann const *ann, FILE *out);
 ```
- 
+
 Genann provides the `genann_read()` and `genann_write()` functions for loading or saving an ANN in a text-based format.
 
 ### Evaluating
@@ -132,6 +135,29 @@ double const *genann_run(genann const *ann, double const *inputs);
 
 Call `genann_run()` on a trained ANN to run a feed-forward pass on a given set of inputs. `genann_run()`
 will provide a pointer to the array of predicted outputs (of `ann->outputs` length).
+
+## Compiling your code
+
+For DDE:
+	cc blah blah -I GenannLib:
+	link blah blah GenannLib:o.genanDDE[<X><Y>]
+
+	Where [<X><Y>] are optionals and should be specified only when you want to use an architecture optimized version of the library, while for general compilations just using GenannDDE is more than enough.
+
+	<X> can be either 26 or 32
+	<Y> can be ARMv2 or ARMv4 or ARMv5 or ARMv6 or ARMv7
+
+	So for example:
+	link blah blah GenannLib:o.genannDDE
+	link blah blah GenannLib:o.genannDDE26ARMv2
+	link blah blah GenannLib:o.genannDDE32ARMv7
+
+For GCC:
+	CFLAGS=-IGenannLib:
+	LDFLAGS= blah blah -l:GenannLib:o.genannGCC
+
+	And then use the variables above as:
+	gcc $(CFLAGS) blah blah $(LDFLAGS)
 
 
 ## Hints
@@ -145,10 +171,4 @@ The [comp.ai.neural-nets
 FAQ](http://www.faqs.org/faqs/ai-faq/neural-nets/part1/) is an excellent
 resource for an introduction to artificial neural networks.
 
-If you need an even smaller neural network library, check out the excellent single-hidden-layer library [tinn](https://github.com/glouw/tinn).
 
-If you're looking for a heavier, more opinionated neural network library in C,
-I recommend the [FANN library](http://leenissen.dk/fann/wp/). Another
-good library is Peter van Rossum's [Lightweight Neural
-Network](http://lwneuralnet.sourceforge.net/), which despite its name, is
-heavier and has more features than Genann.

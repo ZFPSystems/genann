@@ -39,11 +39,12 @@ So here is a quick how-to:
 3) On your Makefile (or your compiling and linking instructions) make sure you point at the right AIF file by using:
 
 For DDE:
+	cc blah blah -I GenannLib:
 	link blah blah GenannLib:o.genanDDE[<X><Y>]
 
 	Where [<X><Y>] are optionals and should be specified only when you want to use an architecture optimized version of the library, while for general compilations just using GenannDDE is more than enough.
 
-	If you are pedantic then "blah blah" is your specific stuff, so not a literally thing to type ;)
+	If you are pedantic then "blah blah" is your specific stuff, so not a literal thing to type ;)
 
 	<X> can be either 26 or 32
 	<Y> can be ARMv2 or ARMv4 or ARMv5 or ARMv6 or ARMv7
@@ -54,7 +55,11 @@ For DDE:
 	link blah blah GenannLib:o.genannDDE32ARMv7
 
 For GCC:
+	CFLAGS=-IGenannLib:
 	LDFLAGS= blah blah -l:GenannLib:o.genannGCC
+
+	And then use the variables above as:
+	gcc $(CFLAGS) blah blah $(LDFLAGS)
 
 For more info look at the README/MD in the !Genann directory.
 
