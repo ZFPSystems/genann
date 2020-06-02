@@ -32,10 +32,10 @@ If you let it as default then it will try to build every Genann variant supporte
 
 Four example programs are included with the source code.
 
-- [`!GenannEx1`](GenannExamples.!GenannEx1.Source.c.example1) - Trains an ANN on the XOR function using backpropagation.
-- [`!GenannEx2`](GenannExamples.!GenannEx1.Source.c.example2) - Trains an ANN on the XOR function using random search.
-- [`!GenannEx3`](GenannExamples.!GenannEx1.Source.c.example3) - Loads and runs an ANN from a file.
-- [`!GenannEx4`](GenannExamples.!GenannEx1.Source.c.example4) - Trains an ANN on the [IRIS data-set](https://archive.ics.uci.edu/ml/datasets/Iris) using backpropagation.
+- [`!GenannEx1`](../../GenannExamples.!GenannEx1.Source.c.example1) - Trains an ANN on the XOR function using backpropagation.
+- [`!GenannEx2`](../../GenannExamples.!GenannEx1.Source.c.example2) - Trains an ANN on the XOR function using random search.
+- [`!GenannEx3`](../../GenannExamples.!GenannEx1.Source.c.example3) - Loads and runs an ANN from a file.
+- [`!GenannEx4`](../../GenannExamples.!GenannEx1.Source.c.example4) - Trains an ANN on the [IRIS data-set](https://archive.ics.uci.edu/ml/datasets/Iris) using backpropagation.
 
 ## Quick Example
 
@@ -136,29 +136,38 @@ double const *genann_run(genann const *ann, double const *inputs);
 Call `genann_run()` on a trained ANN to run a feed-forward pass on a given set of inputs. `genann_run()`
 will provide a pointer to the array of predicted outputs (of `ann->outputs` length).
 
-## Compiling your code
+### Compiling your code
 
 For DDE:
+```Make
 	cc blah blah -I GenannLib:
 	link blah blah GenannLib:o.genanDDE[<X><Y>]
-
+```
 	Where [<X><Y>] are optionals and should be specified only when you want to use an architecture optimized version of the library, while for general compilations just using GenannDDE is more than enough.
 
 	<X> can be either 26 or 32
 	<Y> can be ARMv2 or ARMv4 or ARMv5 or ARMv6 or ARMv7
 
 	So for example:
+```Make
 	link blah blah GenannLib:o.genannDDE
+```
+```Make
 	link blah blah GenannLib:o.genannDDE26ARMv2
+```
+```Make
 	link blah blah GenannLib:o.genannDDE32ARMv7
+```
 
 For GCC:
+```Make
 	CFLAGS=-IGenannLib:
 	LDFLAGS= blah blah -l:GenannLib:o.genannGCC
-
+```
 	And then use the variables above as:
+```Make
 	gcc $(CFLAGS) blah blah $(LDFLAGS)
-
+```
 
 ## Hints
 
