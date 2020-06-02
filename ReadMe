@@ -3,11 +3,15 @@ Genann Neural Network Library port to RISC OS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 DISCLAIMER
+~~~~~~~~~~
 This is a port to RISC OS of a C library called Genann (read the intro for more details). The library was ported to RISC OS by Paolo Fabio Zaino.
 By downloading and using this library you accept the license and the terms of use:
 The library and all the code and info in this repository are provided as is and I am not liable for any issue/problems you may have using this library.
 
+On specific request on the license of the author of the original Genann Library, given that I am modifying the lib from time to time to adapt/improve it as needed for RISC OS and ARM CPUs, I have to declare that this one IS NOT the original Genann library.
+
 INTRO
+~~~~~
 This is the RISC OS port of Genann library, a minimal, well-tested C library for training and using feedforward Artificial Neural Network (ANN).
 
 The primary focus of the original Genann library is to be simple, fast, reliable and hackable, all stuff that is focus of RISC OS as well so I thought the two would match wonderfuly and it seems they do.
@@ -21,10 +25,42 @@ I have put attention to make sure Genann works on both Acorn/ROOL DDE (Desktop D
 Genann is also threadsafe so, in theory, you could use it with libraries like !Vista in Acorn/ROOL DDE C++ as well as with PThreads on GCC.
 
 HOW TO USE IT
-Look at the various example code in the GenannExamples directory, they can be executed and they also come with source code to look at (from the original Genann authors, I just ported the code to compile and work on RISC OS).
+~~~~~~~~~~~~~
+For a detailed tutorial/examples please look at the various examples code in the GenannExamples directory, they can be executed directly from RISC OS Desktop and they also come with source code to look at (from the original Genann authors, I just ported/adapted the code to compile and work on RISC OS).
+
+So here is a quick how-to:
+1) Make sure the Filler has seen the "Library Application" !Genann before you attempt to compile your code with Gennan library.
+
+2) In your own code include the Genann library as follow:
+#include "GenannLib:genann.h"
+
+(The above combined with point 1 will make your life very easy when creating code the uses Genann)
+
+3) On your Makefile (or your compiling and linking instructions) make sure you point at the right AIF file by using:
+
+For DDE:
+	link blah blah GenannLib:o.genanDDE[<X><Y>]
+
+	Where [<X><Y>] are optionals and should be specified only when you want to use an architecture optimized version of the library, while for general compilations just using GenannDDE is more than enough.
+
+	If you are pedantic then "blah blah" is your specific stuff, so not a literally thing to type ;)
+
+	<X> can be either 26 or 32
+	<Y> can be ARMv2 or ARMv4 or ARMv5 or ARMv6 or ARMv7
+
+	So for example:
+	link blah blah GenannLib:o.genannDDE
+	link blah blah GenannLib:o.genannDDE26ARMv2
+	link blah blah GenannLib:o.genannDDE32ARMv7
+
+For GCC:
+	LDFLAGS= blah blah -l:GenannLib:o.genannGCC
 
 For more info look at the README/MD in the !Genann directory.
 
+
+FINALLY
+~~~~~~~
 There is also a test suite that will provide you with a raw performance analisys and full functionality test of the library on your specific platform, look in GenannTests for it.
 
 Enjoy!
