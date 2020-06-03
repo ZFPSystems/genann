@@ -2,15 +2,15 @@
 
 
 # Toolflags:
-ccflags =  -c -depend !Depend -throwback         -strict -fa  -fh     -Ospace  -apcs 3/32/fpe2/swst/fp/nofpr     -IC:,GenannLib: 
-linkflags =    -AIF      -rescan    -c++ -Output $@ 
-squeezeflags =    
+ccflags =  -c -depend !Depend -throwback         -strict -fa  -fh     -Ospace  -apcs 3/32/fpe2/swst/fp/nofpr     -IC:,GenannLib:
+linkflags =    -AIF      -rescan    -c++ -Output $@
+squeezeflags =
 
 # Final targets:
-@.^.!RunImage:   @.o.example1 
+@.^.!RunImage:   @.o.example1
         link $(linkflags) @.o.example1 C:o.stubs C:o.ansilib C:o.ansilibm \
-        GenannLib:o.genann 
-        squeeze     !RunImage
+        GenannLib:o.genannDDE
+        squeeze     @.^.!RunImage
 
 
 

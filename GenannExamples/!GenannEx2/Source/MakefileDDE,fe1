@@ -7,19 +7,19 @@ linkflags =    -AIF      -rescan    -c++ -Output $@
 squeezeflags =
 
 # Final targets:
-@.^.!RunImage:   @.o.example4
-        link $(linkflags) @.o.example4 C:o.stubs C:o.ansilib C:o.ansilibm \
-        GenannLib:o.genann
-        squeeze     !RunImage
+@.^.!RunImage:   @.o.example2
+        link $(linkflags) @.o.example2 C:o.stubs C:o.ansilib C:o.ansilibm \
+        GenannLib:o.genannDDE
+        squeeze     @.^.!RunImage
 
 
 
 # User-editable dependencies:
 
 # Static dependencies:
-@.o.example4:   @.c.example4
-        cc $(ccflags) -o @.o.example4 @.c.example4
+@.o.example2:   @.c.example2
+        cc $(ccflags) -o @.o.example2 @.c.example2
 
 # Dynamic dependencies:
-o.example4:	c.example4
-o.example4:	GenannLib:h.genann
+o.example2:	c.example2
+

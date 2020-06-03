@@ -9,8 +9,8 @@ squeezeflags =
 # Final targets:
 @.^.!RunImage:   @.o.example3
         link $(linkflags) @.o.example3 C:o.stubs C:o.ansilib C:o.ansilibm \
-        GenannLib:o.genann
-        squeeze     !RunImage
+        GenannLib:o.genannDDE
+        squeeze     @.^.!RunImage
 
 
 
@@ -21,6 +21,5 @@ squeezeflags =
         cc $(ccflags) -o @.o.example3 @.c.example3
 
 # Dynamic dependencies:
-
 o.example3:	c.example3
-o.example3:	GenannLib:h.genann
+
