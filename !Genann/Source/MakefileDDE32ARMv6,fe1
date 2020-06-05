@@ -27,5 +27,6 @@ ModSqzflags = -o $@
 
 # Dynamic dependencies:
 
+
 o.genannDDE32ARMv6:	c.genann
 o.genannDDE32ARMv6:	h.genann

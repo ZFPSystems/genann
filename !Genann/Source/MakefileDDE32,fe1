@@ -26,5 +26,4 @@ ModSqzflags = -o $@
 
 # Dynamic dependencies:
 
-o.genannDDE:	c.genann
-o.genannDDE:	h.genann
+

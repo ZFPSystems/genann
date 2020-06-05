@@ -21,3 +21,6 @@ squeezeflags =
         cc $(ccflags) -o @.o.test @.c.test
 
 # Dynamic dependencies:
+o.test:	c.test
+o.test:	GenannLib:h.genann
+o.test:	h.minctest
