@@ -1,17 +1,18 @@
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=============================================
 Genann Neural Network Library port to RISC OS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-DISCLAIMER
-~~~~~~~~~~
+=============================================
+------------
+-DISCLAIMER-
+------------
 This is a port to RISC OS of a C library called Genann (read the intro for more details). The library was ported to RISC OS by Paolo Fabio Zaino.
 By downloading and using this library you accept the license and the terms of use:
 The library and all the code and info in this repository are provided as is and I am not liable for any issue/problems you may have using this library.
 
 On specific request on the license of the author of the original Genann Library, given that I am modifying the lib from time to time to adapt/improve it as needed for RISC OS and ARM CPUs, I have to declare that this one IS NOT the original Genann library.
 
-INTRO
-~~~~~
+-----------
+-  INTRO  -
+-----------
 This is the RISC OS port of Genann library, a minimal, well-tested C library for training and using feedforward Artificial Neural Network (ANN).
 
 The primary focus of the original Genann library is to be simple, fast, reliable and hackable, all stuff that is focus of RISC OS as well so I thought the two would match wonderfuly and it seems they do.
@@ -24,8 +25,9 @@ I have put attention to make sure Genann works on both Acorn/ROOL DDE (Desktop D
 
 Genann is also threadsafe so, in theory, you could use it with libraries like !Vista in Acorn/ROOL DDE C++ as well as with PThreads on GCC.
 
-HOW TO USE IT
-~~~~~~~~~~~~~
+---------------
+-HOW TO USE IT-
+---------------
 For a detailed tutorial/examples please look at the various examples code in the GenannExamples directory, they can be executed directly from RISC OS Desktop and they also come with source code to look at (from the original Genann authors, I just ported/adapted the code to compile and work on RISC OS).
 
 So here is a quick how-to:
@@ -61,11 +63,32 @@ For GCC:
 	And then use the variables above as:
 	gcc $(CFLAGS) blah blah $(LDFLAGS)
 
-For more info look at the README/MD in the !Genann directory.
+For more info look at the Manual.PDF in this repo.
 
+-------------
+- Tested On -
+-------------
 
-FINALLY
-~~~~~~~
+- RComp Mini.M (i.MX6)       (RISC OS 5.27) [PASSED!]
+- RComp ARMBook              (RISC OS 5.27) [To be tested]
+- RComp ARMini               (RISC OS     ) [To be tested]
+- RaspberryPi 3              (RISC OS 5.24) [PASSED!]
+- RaspberryPi 2              (RISC OS 5.24) [To be tested]
+- RaspberryPi 1              (RISC OS 5.24) [To be tested]
+- PandaBoard                 (RISC OS     ) [To be tested]
+- Castle Iyonix PC           (RISC OS 5.24) [PASSED!]
+- Acorn RiscPC 700 StrongARM (RISC OS 4.39) [To be tested]
+- Acorn RiscPC 600 StrongARM (RISC OS 6.00) [To be tested]
+- Castle Kinetic RiscPC 700  (RISC OS 4.03) [To be tested]
+- Acorn A3010                (RISC OS 3.10) [To be tested]
+- Acorn A3020                (RISC OS 3.11) [To be tested]
+- Acorn A5000 (ARM3)         (RISC OS 3.10) [To be tested]
+- Acorn Archimedes 310 (ARM3)(RISC OS 3.11) [To be tested]
+- MiSTer Archie Core A3000   (RISC OS 3.11) [To be tested]
+
+---------
+-FINALLY-
+---------
 There is also a test suite that will provide you with a raw performance analisys and full functionality test of the library on your specific platform, look in GenannTests for it.
 
 Enjoy!
