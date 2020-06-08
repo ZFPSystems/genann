@@ -69,29 +69,30 @@ For more info look at the Manual.PDF in this repo.
 - Tested On -
 -------------
 
-- RComp Mini.M (i.MX6)          (RISC OS 5.27 ) [PASSED!]
-- RComp ARMBook                 (RISC OS 5.27 ) [To be tested]
-- RComp ARMini                  (RISC OS      ) [To be tested]
-- RaspberryPi 3                 (RISC OS 5.24 ) [PASSED!]
-- RaspberryPi 2                 (RISC OS 5.24 ) [To be tested]
-- RaspberryPi 1                 (RISC OS 5.24 ) [To be tested]
-- PandaBoard                    (RISC OS      ) [To be tested]
-- Castle Iyonix PC              (RISC OS 5.24 ) [PASSED!]
-- Acorn RiscPC 700 StrongARM    (RISC OS 4.39 ) [To be tested]
-- Acorn RiscPC 600 StrongARM    (RISC OS 6.00 ) [To be tested]
-- Castle Kinetic RiscPC 700     (RISC OS 4.03 ) [To be tested]
-- Acorn A3010                   (RISC OS 3.10*) [To be tested]
-- Acorn A3020                   (RISC OS 3.11*) [To be tested]
-- Acorn A5000 (ARM3)            (RISC OS 3.10*) [To be tested]
-- Acorn Archimedes 310 (ARM3)   (RISC OS 3.11*) [To be tested]
-- MiSTer Archie Core A3000      (RISC OS 3.11*) [To be tested]
+- RComp Mini.M (i.MX6)		(RISC OS 5.27 ) [PASSED!]	(Tester Paolo F.Z.)
+- RComp ARMBook			(RISC OS 5.27 ) [To be tested]
+- RComp ARMini			(RISC OS      ) [To be tested]
+- Pi Zero			(RISC OS 5.xx ) [PASSED!]	(Tester Tristan M.)
+- RaspberryPi 3			(RISC OS 5.24 ) [PASSED!]	(Tester Paolo F.Z.)
+- RaspberryPi 2			(RISC OS 5.24 ) [To be tested]
+- RaspberryPi 1			(RISC OS 5.24 ) [To be tested]
+- PandaBoard			(RISC OS      ) [To be tested]
+- Castle Iyonix PC		(RISC OS 5.24 ) [PASSED!]	(Tester Paolo F.Z)
+- Acorn RiscPC 700 StrongARM	(RISC OS 4.39 ) [To be tested]
+- Acorn RiscPC 600 StrongARM	(RISC OS 6.00 ) [To be tested]
+- Castle Kinetic RiscPC 700	(RISC OS 4.03 ) [To be tested]
+- Acorn A3010			(RISC OS 3.10*) [To be tested]
+- Acorn A3020			(RISC OS 3.11*) [To be tested]
+- Acorn A5000 (ARM3)		(RISC OS 3.10*) [To be tested]
+- Acorn Archimedes 310 (ARM3)	(RISC OS 3.11*) [To be tested]
+- MiSTer Archie Core A3000	(RISC OS 3.11*) [To be tested]
 
 Emulators
-- VirtualAcorn Adj-SA StrongARM (RISC OS 4.39 ) [PASSED!]
-- VirtualAcorn Adj-SA ARMFE7500 (RISC OS 4.39 ) [PASSED!]
-- RPMEmu                        (RISC OS 5.24 ) [To be tested]
-- VirtualA5000                  (RISC OS 3.11*) [To be tested]
-- ArchiEmu ARM3                 (RISC OS 3.11*) [NOT PASSED!]
+- VirtualAcorn Adj-SA StrongARM	(RISC OS 4.39 ) [PASSED!]	(Tester Paolo F.Z.)
+- VirtualAcorn Adj-SA ARMFE7500	(RISC OS 4.39 ) [PASSED!]	(Tester Paolo F.Z.)
+- RPMEmu			(RISC OS 5.24 ) [To be tested]
+- VirtualA5000			(RISC OS 3.11*) [To be tested]
+- ArchiEmu ARM3			(RISC OS 3.11*) [NOT PASSED!]	(Tester Paolo F.Z.)
 
 Tests consists of running the generic version of the test suite and the specific version for the ARM architecture on the tested system, plus run all the generic examples. If all codes completes succesfully and results are as expected then the test is considered passed, otherwise is not passed.
 
