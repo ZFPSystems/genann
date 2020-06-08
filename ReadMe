@@ -96,7 +96,7 @@ Emulators
 
 Tests consists of running the generic version of the test suite and the specific version for the ARM architecture on the tested system, plus run all the generic examples. If all codes completes succesfully and results are as expected then the test is considered passed, otherwise is not passed.
 
-* Please Note: All RISC OS 3.1x systems requires ROLL DDE CLib to be able to run cod basedon Genann library.
+* Please Note: All RISC OS 3.1x systems requires ROOL DDE CLib to be able to run code using Genann library.
 
 ---------
 -FINALLY-
