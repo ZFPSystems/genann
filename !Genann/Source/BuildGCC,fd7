@@ -4,12 +4,15 @@
 | Temporarly set this directory as root
 Dir <Obey$Dir>
 
-| Make the Library
+| Make the static Library
 WimpSlot -min 16384k
 make -f MakeFileGCC
 
-| Move it in the right place:
-|IfThere @.o.genann Then copy @.o.genann @.^.o.genann FD ~C
+| Make the Shared Library
+make -f MakeFileGCCShared
+
+| Install Genann/so in SharedLibs
+|IfThere <Obey$Dir>.so.libGenann/so/1/0/0 Then Run <Obey$Dir>.InstallGenannSharedLib
 
 | Copy library header:
 IfThere @.h.genann Then copy @.h.genann @.^.h.genann F ~C

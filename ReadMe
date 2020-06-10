@@ -94,7 +94,7 @@ Emulators
 - VirtualA5000			(RISC OS 3.11*) [To be tested]
 - ArchiEmu ARM3			(RISC OS 3.11*) [NOT PASSED!]	(Tester Paolo F.Z.)
 
-Tests consists of running the generic version of the test suite and the specific version for the ARM architecture on the tested system, plus run all the generic examples. If all codes completes succesfully and results are as expected then the test is considered passed, otherwise is not passed.
+Tests consists of running the generic version of the test suite and the specific version for the ARM architecture on the tested system, plus run all the generic examples. If all code completes succesfully and results are as expected then the test is considered passed, otherwise is not passed.
 
 * Please Note: All RISC OS 3.1x systems requires ROOL DDE CLib to be able to run code using Genann library.
 

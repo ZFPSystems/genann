@@ -1,0 +1,5 @@
+cdir SharedLibs:lib.Genann
+copy <Obey$Dir>.so.libGenann/so/1/0/0 SharedLibs:lib.Genann ~C N
+copy <Obey$Dir>.so.libGenann/so SharedLibs:lib.Genann ~C N
+copy <Obey$Dir>.so.libGenann/so/1 SharedLibs:lib.Genann ~C N
+
