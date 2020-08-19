@@ -10,7 +10,7 @@ WimpSlot -min 1024k
 
 | Make DDE 32bit APCS 3 version
 | Should optimize for: RO5.x on Iyonix
-amu THROWBACK=-throwback -f MakeFileDDE
+amu THROWBACK=-throwback USEARCH=7 USECPU=Cortex-A7 USEAPCS32=1 USERPF=MM -f MakeFileDDE
 
 | Reset
 dir <Return$Dir>

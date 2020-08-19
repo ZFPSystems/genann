@@ -1,22 +1,14 @@
 | Genann Library builder for Acorn/ROOL DDE
 | By Paolo Fabio Zaino
 
-| Set the following variables to match your building configuration:
-
-| *** BEGIN StubG-ness (here only for historical reasons, ignore it)
-| This is for compatibility with the past work I did on this lib.
-| Please, please, please, if you don't know what StubG is just don't use it
-| leave the above and the StubG make below commented out, your life
-| will be fine, mine will be too.
-|Set StubG$Dir  &.AcornC/C++.Export.StubG.Libraries.clib | If you want to do 26/32bit indipendent builds you MUST use StubG
-							| To use stubG you have to download the latest from RISC OS Ltd (it's a Zip file)
-							| at the moment of writing this the latest release is 0.04 and can be found here:
-							| http://riscos.com/support/developers/stubg/index.html
-							| download it, unzip it somewhere and then use the path where you unzipped it to
-							| populate the StubG$Dir value above.
-|Set StubG$Path <StubG$Dir>.
-|*** End of StubG-ness a memory from the past...
-
+| Compilation Flags:
+|  DDTDEBUG=1    enables DDT Debug symbols generation
+|     DEBUG=1    enables DEBUG code within Gennan C/C++ code
+|   USEARCH=XY   where XY are one of the available -arch options in DDE enables optimizations for XY arch
+|    USECPU=XXX  where XXX is one of the CPU code available in DDE -cpu option enables optimizations for XXX cpu
+| USEAPCS32=1    enables APCS 32
+| USEAPCS26=1    enables APCS 26
+|    USERPF=Name where Name is a use chosen name adds a postfix Name to the Library object file
 
 | Temporarly set this directory as root
 Set Return$Dir &
@@ -25,68 +17,56 @@ Dir <Obey$Dir>
 | Make the Library
 WimpSlot -min 1024k
 
-| Please note: If you want to rebuild the Library on your system then
-|              uncomment one of the lines below corresponding to your
-|              desired ARM Architecture and RISC OS APCS version.
-|
-|              If you want to build a StubG release (aka universal)
-|              then uncomment the line here below with MakeFileDDESG
+| Generic build (not so generic)
 
-| Make DDE StubG
-| should work on everything as long as your RO has the right CLib
-| (may requires !System provided by ROOL)
-| For applications that should run everywhere it's probably a good
-| idea to use this one
+| Build Generic ARM library (should run everywhere)
 amu THROWBACK=-throwback -f MakeFileDDE
 
+|
+| 26bit support:
+| Use ONLY with OLD Acorn DDE (new ROOL DDE can't compile 26bit
+| even if they say they can, libraries a pre-compiled 32bit, so
+| you would only mix stuff up and get link errors in the end
+
+| Build ARMv2 ARM2 optimized library (runs only on A305/A310/A3000 with RISC OS 3.x)
+|amu THROWBACK=-throwback USEARCH=2 USECPU=ARM2 USEAPCS26=1 USERPF=A2 -f MakeFileDDE
+
+| Build ARMv2a ARM250 optimized library (runs only on A30x0 with RISC OS 3.x)
+|amu THROWBACK=-throwback USEARCH=2a USECPU=2a USEAPCS26=1 USERPF=A250 -f MakeFileDDE
+
+| Build ARMv2a ARM3 optimized library (runs only on A305/A310/A400/A3000/A5000/A540 with ARM3 and RISC OS 3.x)
+|amu THROWBACK=-throwback USEARCH=2a USECPU=ARM3 USEAPCS26=1 USERPF=A3 -f MakeFileDDE
+
+| Build ARMv3 ARM600 optimized library (runs only on RiscPC 600/700 with RISC OS 3.x/4.x)
+|amu THROWBACK=-throwback USEARCH=3 USECPU=ARM610 USEAPCS26=1 USERPF=A610 -f MakeFileDDE
+
+| Build ARMv3 ARM700 optimized library (runs only on RiscPC 700 with RISC OS 3.x/4.x)
+|amu THROWBACK=-throwback USEARCH=3 USECPU=ARM710 USEAPCS26=1 USERPF=A710 -f MakeFileDDE
+
+| Build ARMv4 StrongARM optimized library (runs only on RiscPC with StrongARM RISC OS 3.7/4.x)
+|amu THROWBACK=-throwback USEARCH=4 USECPU=StrongARM USEAPCS26=1 USERPF=SA -f MakeFileDDE
 
 |
 | 32bit support:
 |
 
-| Make DDE 32bit APCS 3 version
-| good for: RO5.x on all 32bit ARMs
-| (requires !System provided by ROOL)
-amu THROWBACK=-throwback -f MakeFileDDE32
+| Build ARMv5 XScale optimized library (runs only on Iyonix PC with RISC OS 5.x)
+amu THROWBACK=-throwback USEARCH=5 USECPU=XScale USEAPCS32=1 USERPF=XS -f MakeFileDDE
 
-| Make DDE 32bit APCS 3 version
-| Should optimize for: RO5.x on Iyonix
-amu THROWBACK=-throwback -f MakeFileDDE32ARMv5
+| Build ARMv6 ARM11 optimized library (runs on RPi 1st generation with RISC OS 5.x)
+amu THROWBACK=-throwback USEARCH=6 USECPU=6 USEAPCS32=1 USERPF=Pi1 -f MakeFileDDE
 
-| Make DDE 32bit APCS 3
-| Should optimize for: RPi 1
-amu THROWBACK=-throwback -f MakeFileDDE32ARMv6
+| Build ARMv7a Cortex-A7 optimized library (runs on RPi early 2nd generation, v1.1 with RISC OS 5.x)
+amu THROWBACK=-throwback USEARCH=7 USECPU=7-A USEAPCS32=1 USERPF=Pi2 -f MakeFileDDE
 
-| Make DDE 32bit APCS 3
-| Should optimize for: RPi 2
-amu THROWBACK=-throwback -f MakeFileDDE32ARMv7
+| Build ARMv8a Cortex-A53 optimized library (runs on RPi 2nd generation, v1.2, Pi3, ARMbook with RISC OS 5.x)
+amu THROWBACK=-throwback USECPU=Cortex-A53 USEAPCS32=1 USERPF=Pi3 -f MakeFileDDE
 
-| Make DDE 32bit APCS 3
-| Should optimize for: RPi 3
-amu THROWBACK=-throwback -f MakeFileDDE32ARMv8
+| Build ARMv8a Aarch32 Cortex-A7 optimized library (runs on RPi 4th generation with RISC OS 5.x)
+|amu THROWBACK=-throwback USEARCH=8 USECPU=Cortex-A72 USEAPCS32=1 USERPF=Pi4 -f MakeFileDDE
 
-
-|
-| 26bit support:
-|
-
-| Make DDE 26bit APCS 3 version
-| Should optimize for: RO3.xy/RO4.xy on
-|                      ARM6xx/ARM7xx
-|                      may work on ARM3 too
-amu THROWBACK=-throwback -f MakeFileDDE26
-
-| Make DDE 26bit APCS 3 version and
-| optimize code for ARMv2
-| Should optimize for: RO3.x with ARM2,
-|                      ARM250 or ARM3 CPUs.
-| (this is for old Archimedes and Acorn Axxxx series)
-amu THROWBACK=-throwback -f MakeFileDDE26ARMv2
-
-| Make DDE 26bit APCS 3 version
-| Should Optimize for: RO4.x with StrongARM
-amu THROWBACK=-throwback -f MakeFileDDE26ARMv4
-
+| Build ARMv7a Cortex-A7 optimized library (runs on mini.m with RISC OS 5.x)
+amu THROWBACK=-throwback USEARCH=7 USECPU=Cortex-A7 USEAPCS32=1 USERPF=MM -f MakeFileDDE
 
 |
 | Final tocuhes:

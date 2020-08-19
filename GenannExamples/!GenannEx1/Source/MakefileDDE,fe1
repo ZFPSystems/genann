@@ -2,15 +2,72 @@
 
 
 # Toolflags:
-ccflags =  -c -depend !Depend -throwback         -strict -fa  -fh     -Ospace  -apcs 3/32/fpe2/swst/fp/nofpr     -IC:,GenannLib:
-linkflags =    -AIF      -rescan    -c++ -Output $@
-squeezeflags =
+CCFlags      = -depend !Depend -throwback -c -strict -fa -fh -ansi
+LinkFlags    = -AIF -rescan -REENT -Output $@
+SqueezeFlags =
+
+ifdef USEAPCS32
+CCFlags     += -apcs 3/32/fpe3/reent/swst/fp/nofpr -32 -IC:,GennanLib:
+C++Flags    += -apcs 3/32/fpe3/reent/swst/fp/nofpr -32 -IC:,GennanLib:
+ObjAsmFlags += -apcs 3/32/fpe3/reent/swst/fp/nofpr -32
+OBJLibs      = C:o.stubs C:o.ansilib
+ObjPostFix1 =32
+endif
+
+ifdef USEAPCS26
+CCFlags     += -apcs 3/26/fpe2/reent/swst/fp/nofpr -26 -j<C/C++$Dir>.Export.APCS-26.Lib.clib.h.stdio \
+						       -j<C/C++$Dir>.Export.APCS-26.Lib.clib.h.stdlib \
+						       -j<C/C++$Dir>.Export.APCS-26.Lib.clib.h.time \
+						       -I<C/C++$Dir>.Export.APCS-26.Lib.clib,GennanLib:
+C++Flags    += -apcs 3/26/fpe2/reent/swst/fp/nofpr -26 -I<C/C++$Dir>.Export.APCS-26.Lib.clib,GennanLib:
+OBJLibs      = <C/C++$Dir>.Export.APCS-26.Lib.clib.o.stubs <C/C++$Dir>.Export.APCS-26.Lib.clib.o.ansilib
+ObjAsmFlags += -apcs 3/26/fpe2/reent/swst/fp/nofpr
+ObjPostFix1 =26
+else
+CCFlags     += -IC:,GennanLib:
+C++Flags    += -IC:,GennanLib:
+OBJLibs      = C:o.stubs C:o.ansilib
+endif
+
+ifdef USEARCH
+CCflags     += -arch $(USEARCH)
+C++Flags    += -arch $(USEARCH)
+ObjPostFix2 +=ARMv$(USEARCH)
+endif
+
+ifdef USECPU
+CCFlags     += -cpu $(USECPU)
+C++Flags    += -cpu $(USECPU)
+ObjAsmFlags += -cpu $(USECPU)
+endif
+
+ifdef OPTISPACE
+CCFlags     += -Ospace
+C++Flags    += -Ospace
+else
+CCFlags     += -Otime
+C++Flags    += -Otime
+endif
+
+ifdef DDTDEBUG
+CCFlags     += -g -IC:^.DDTLib
+C++Flags    += -g -IC:^.DDTLib
+LinkFlags   += --debug C:^.DDTLib.o.DDTLib
+endif
+
+ifdef DEBUG
+CCFlags     += -DDEBUG
+C++Flags    += -DDEBUG
+endif
+
+ifdef USERPF
+USRPF       = $(USERPF)
+endif
 
 # Final targets:
 @.^.!RunImage:   @.o.example1
-        link $(linkflags) @.o.example1 C:o.stubs C:o.ansilib C:o.ansilibm \
-        GenannLib:o.genannDDE
-        squeeze     @.^.!RunImage
+        link $(LinkFlags) @.o.example1 $(OBJLibs) GenannLib:o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF)
+        squeeze  @.^.!RunImage
 
 
 
@@ -18,7 +75,7 @@ squeezeflags =
 
 # Static dependencies:
 @.o.example1:   @.c.example1
-        cc $(ccflags) -o @.o.example1 @.c.example1
+        cc $(CCFlags) -o @.o.example1 @.c.example1
 
 # Dynamic dependencies:
 o.example1:	c.example1

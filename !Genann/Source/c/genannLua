@@ -1,0 +1,100 @@
+/*
+ * GENANN Lua Wrapper
+ *
+ * Copyright (c) 2020 Paolo Fabio Zaino
+ *
+ * http://zfpsystems.com
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty, In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgement in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This nnotice may not be removed or altered from any source distribution.
+ *
+ */
+
+#ifdef __cplusplus
+// Paolo's note: for C++ stuff I'll have to port lua.hpp
+//               it doesn't appears to be ported in RiscLua
+//               but I may be wrong (anyway a problem for later)
+  #include "lua.hpp"
+#else
+  #include "RiscLuaSrc:lua.h"
+  #include "RiscLuaSrc:lualib.h"
+  #include "RiscLuaSrc:lauxlib.h"
+#endif
+#include "genann.h"
+
+//so that name mangling doesn't mess up function names
+#ifdef __cplusplus
+extern "C"{
+#endif
+
+// Some globals required:
+genann *ann[];
+
+static int c_swap (lua_State *L) {
+    //check and fetch the arguments
+    double arg1 = luaL_checknumber (L, 1);
+    double arg2 = luaL_checknumber (L, 2);
+
+    //push the results
+    lua_pushnumber(L, arg2);
+    lua_pushnumber(L, arg1);
+
+    //return number of results
+    return 2;
+}
+
+static int my_sin (lua_State *L) {
+    double arg = luaL_checknumber (L, 1);
+    lua_pushnumber(L, arg);
+    return 1;
+}
+
+static int c_gennan_init(lua_State *L) {
+  int ann_id =luaL_checknumber (L, 1);
+  int inputs = luaL_checknumber (L, 2);
+  int hidden_layers = luaL_checknumber (L, 3);
+  int hidden = luaL_checknumber (L, 4);
+  int outputs = luaL_checknumber (L, 5);
+
+  ann[ann_id] = genann_init(inputs, hidden_layers, hidden, outputs);
+
+  return 0;
+}
+
+static int c_genann_free(lua_State *L) {
+  int ann_id = luaL_checknumber (L, 1);
+  genann_free(ann[ann_id]);
+  return 0;
+}
+
+//library to be registered
+static const struct luaL_Reg GenannLua [] = {
+  {"gennan_init", c_gennan_init},
+  {"genann_free", c_genann_free},
+  {"c_swap", c_swap},
+  {"mysin", my_sin},
+  {NULL, NULL}         /* End of the Table */
+};
+
+//name of this function is not flexible
+int luaopen_GenannLua (lua_State *L){
+    luaL_newlib(L, GenannLua);
+    return 1;
+}
+
+#ifdef __cplusplus
+}
+#endif

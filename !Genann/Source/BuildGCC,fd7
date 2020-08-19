@@ -9,10 +9,20 @@ WimpSlot -min 16384k
 make -f MakeFileGCC
 
 | Make the Shared Library
-make -f MakeFileGCCShared
+|make -f MakeFileGCCShared
 
 | Install Genann/so in SharedLibs
 |IfThere <Obey$Dir>.so.libGenann/so/1/0/0 Then Run <Obey$Dir>.InstallGenannSharedLib
+
+| Make the Lua Wrapper
+| Paolo's note: before you can build Lua wrappers you must:
+|               1) Install RiscLua Sources somewhere on your SD/HDD
+|               2) Build RiscLua (you'll need the o.<objects>
+|               3) Set the following path to where your RiscLua sources
+|                  are stored on your SD/HDD. (Note the . "dot" at the
+|                  end of a path name)
+Set RiscLuaSrc$Path SDFS::minim.$.Programming.RiscLua.83.src.
+make -f MakeFileGCCGLuaShared
 
 | Copy library header:
 IfThere @.h.genann Then copy @.h.genann @.^.h.genann F ~C

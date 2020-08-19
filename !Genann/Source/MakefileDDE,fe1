@@ -1,31 +1,99 @@
 # Project:   !Genann
 
 # Toolflags:
-CCflags   = -c -depend !Depend -throwback -strict -fa -fh -Ospace -apcs 3/32/fpe2/swst/fp/nofpr
-C++flags = -c -depend !Depend -IC: -throwback
-Linkflags = -aif -c++ -o $@
-ObjAsmflags = -throwback -NoCache -depend !Depend
-CMHGflags =
-LibFileflags = -o  -c  $@
-Squeezeflags = -o $@
-ModSqzflags = -o $@
+CCFlags      = -depend !Depend -throwback -c -strict -fa -fh -ansi
+C++Flags     = -depend !Depend -throwback -c
+ObjAsmFlags  = -depend !Depend -throwback -NoCache
+LinkFlags    = -aif -c++ -o $@
+LibFileFlags = -c -o $@
 
+ifdef USEAPCS32
+CCFlags     += -apcs 3/32/fpe3/swst/fp/nofpr -32 -D_RISCOS_BUILD32 -IC:
+C++Flags    += -apcs 3/32/fpe3/swst/fp/nofpr -32 -D_RISCOS_BUILD32 -IC:
+ObjAsmFlags += -apcs 3/32/fpe3/swst/fp/nofpr -32
+ObjPostFix1 =32
+endif
+
+ifdef USEAPCS26
+CCFlags     += -apcs 3/26/fpe2/swst/fp/nofpr -26 -D_RISCOS_BUILD26 \
+	       -j<C/C++$Dir>.Export.APCS-26.Lib.clib.h.assert \
+	       -I<C/C++$Dir>.Export.APCS-26.Lib.clib
+C++Flags    += -apcs 3/26/fpe2/swst/fp/nofpr -26 -D_RISCOS_BUILD26 \
+	       -I<C/C++$Dir>.Export.APCS-26.Lib.clib
+ObjAsmFlags += -apcs 3/26/fpe2/swst/fp/nofpr
+ObjPostFix1 =26
+endif
+
+ifdef USEARCH
+CCflags     += -arch $(USEARCH)
+C++Flags    += -arch $(USEARCH)
+ObjPostFix2 +=ARMv$(USEARCH)
+endif
+
+ifdef USECPU
+CCFlags     += -cpu $(USECPU)
+C++Flags    += -cpu $(USECPU)
+ObjAsmFlags += -cpu $(USECPU)
+endif
+
+ifdef OPTISPACE
+CCFlags     += -Ospace
+C++Flags    += -Ospace
+else
+CCFlags     += -Otime
+C++Flags    += -Otime
+endif
+
+ifdef DDTDEBUG
+CCFlags     += -g -IC:^.DDTLib
+C++Flags    += -g -IC:^.DDTLib
+LinkFlags   += --debug C:^.DDTLib.o.DDTLib
+endif
+
+ifdef DEBUG
+CCFlags     += -DDEBUG
+C++Flags    += -DDEBUG
+endif
+
+ifdef USERPF
+USRPF       = $(USERPF)
+endif
 
 # Final targets:
-@.^.o.genannDDE: @.o.genannDDE
-           libfile $(LibFileflags) @.o.genannDDE
-
+@.^.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF): @.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF)
+           libfile $(LibFileFlags) @.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF)
 
 # User-editable dependencies:
 
 
 # Static dependencies:
-@.o.genannDDE: @.c.genann
-          cc $(CCflags) -o @.o.genannDDE @.c.genann
-
+@.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF): @.c.genann
+          cc $(CCFlags) -o @.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF) @.c.genann
 
 # Dynamic dependencies:
-
-
+o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF):	c.genann
+o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF):	h.genann
+o.genannDDE26ARMv2A2:	c.genann
+o.genannDDE26ARMv2A2:	h.genann
+o.genannDDE26ARMv2aA250:	c.genann
+o.genannDDE26ARMv2aA250:	h.genann
+o.genannDDE26ARMv2aA3:	c.genann
+o.genannDDE26ARMv2aA3:	h.genann
+o.genannDDE26ARMv3A610:	c.genann
+o.genannDDE26ARMv3A610:	h.genann
+o.genannDDE26ARMv3A710:	c.genann
+o.genannDDE26ARMv3A710:	h.genann
+o.genannDDE26ARMv4SA:	c.genann
+o.genannDDE26ARMv4SA:	h.genann
+o.genannDDE32ARMv5XS:	c.genann
+o.genannDDE32ARMv5XS:	h.genann
 o.genannDDE:	c.genann
 o.genannDDE:	h.genann
+o.genannDDE32ARMv6Pi1:	c.genann
+o.genannDDE32ARMv6Pi1:	h.genann
+o.genannDDE32ARMv7Pi2:	c.genann
+o.genannDDE32ARMv7Pi2:	h.genann
+o.genannDDE32Pi3:	c.genann
+o.genannDDE32Pi3:	h.genann
+o.genannDDE32ARMv7MM:	c.genann
+o.genannDDE32ARMv7MM:	h.genann
