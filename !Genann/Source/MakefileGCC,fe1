@@ -2,7 +2,9 @@
 
 
 # Toolflags:
-CCflags = -O3 -mthrowback -c -Wl,-s
+CCFlagsStatic = -O3 -mthrowback -c -Wl,-s
+CCFlagsShared = -O3 -mthrowback -c -Wl,-s -shared -fPIC
+CCFlagsLuaWrp = -O3 -mthrowback -c -Wl,-s -shared -fPIC -IRiscLuaSrc: -llua
 CMHGflags =
 LibFileflags = -o  -c  $@
 Squeezeflags = -o $@
@@ -10,15 +12,35 @@ ModSqzflags = -o $@
 
 
 # Final targets:
-$@.^.o.genannGCC: o.genannGCC
-	copy @.o.genannGCC @.^.o.genannGCC
+static: o.genannGCC
+	copy @.o.genannGCC @.^.o.genannGCC ~C F
+
+shared: o.libGenann/so
+	copy @.o.libGenann/so @.^.so.libGenann/so/1/0/0 ~C F
+	SetType @.^.so.libGenann/so/1/0/0 ELF
+
+lua: o.GenannLua/so
+	copy @.o.GenannLua/so @.^.so.GenannLua/so/1/0/0 ~C F
+	SetType @.^.so.GenannLua/so/1/0/0 ELF
+
+all: static shared
+
+clean:
+	IfThere o.*GCC	Then wipe @.o.*GCC FR~C~V
+	IfThere o.*/so  Then wipe @.o.*/so FR~C~V
 
 # User-editable dependencies:
 
 
 # Static dependencies:
 o.genannGCC: c.genann
-	gcc $(CCflags) -o $@ c.genann
+	gcc $(CCFlagsStatic) -o $@ c.genann
+
+o.libGenann/so: c.genann
+	gcc $(CCFlagsShared) -o $@ c.genann
+
+o.GenannLua/so: c.genannLua
+	gcc $(CCflags) -o $@ c.genannLua
 
 # Dynamic dependencies:
 

@@ -27,11 +27,12 @@
 // Paolo's note: for C++ stuff I'll have to port lua.hpp
 //               it doesn't appears to be ported in RiscLua
 //               but I may be wrong (anyway a problem for later)
-  #include "lua.hpp"
+#include "lua.hpp"
 #else
-  #include "RiscLuaSrc:lua.h"
-  #include "RiscLuaSrc:lualib.h"
-  #include "RiscLuaSrc:lauxlib.h"
+#include "RiscLuaSrc:h.luaconf"
+#include "RiscLuaSrc:h.lua"
+#include "RiscLuaSrc:h.lualib"
+#include "RiscLuaSrc:h.lauxlib"
 #endif
 #include "genann.h"
 

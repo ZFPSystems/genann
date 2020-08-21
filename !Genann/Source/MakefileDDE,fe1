@@ -6,11 +6,13 @@ C++Flags     = -depend !Depend -throwback -c
 ObjAsmFlags  = -depend !Depend -throwback -NoCache
 LinkFlags    = -aif -c++ -o $@
 LibFileFlags = -c -o $@
+GENAPCS      = -apcs 3
 
 ifdef USEAPCS32
 CCFlags     += -apcs 3/32/fpe3/swst/fp/nofpr -32 -D_RISCOS_BUILD32 -IC:
 C++Flags    += -apcs 3/32/fpe3/swst/fp/nofpr -32 -D_RISCOS_BUILD32 -IC:
 ObjAsmFlags += -apcs 3/32/fpe3/swst/fp/nofpr -32
+GENAPCS     +=/32
 ObjPostFix1 =32
 endif
 
@@ -20,6 +22,7 @@ CCFlags     += -apcs 3/26/fpe2/swst/fp/nofpr -26 -D_RISCOS_BUILD26 \
 	       -I<C/C++$Dir>.Export.APCS-26.Lib.clib
 C++Flags    += -apcs 3/26/fpe2/swst/fp/nofpr -26 -D_RISCOS_BUILD26 \
 	       -I<C/C++$Dir>.Export.APCS-26.Lib.clib
+GENAPCS     +=/26
 ObjAsmFlags += -apcs 3/26/fpe2/swst/fp/nofpr
 ObjPostFix1 =26
 endif
@@ -28,6 +31,10 @@ ifdef USEARCH
 CCflags     += -arch $(USEARCH)
 C++Flags    += -arch $(USEARCH)
 ObjPostFix2 +=ARMv$(USEARCH)
+# Check specific Architectures:
+#ifeq ("${USERARCH}","6")
+#ECHO "Building for Arch: "$(USEARCH)
+#endif
 endif
 
 ifdef USECPU
@@ -45,8 +52,8 @@ C++Flags    += -Otime
 endif
 
 ifdef DDTDEBUG
-CCFlags     += -g -IC:^.DDTLib
-C++Flags    += -g -IC:^.DDTLib
+CCFlags     += -gflv -IC:^.DDTLib
+C++Flags    += -gflv -IC:^.DDTLib
 LinkFlags   += --debug C:^.DDTLib.o.DDTLib
 endif
 
@@ -60,8 +67,14 @@ USRPF       = $(USERPF)
 endif
 
 # Final targets:
-@.^.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF): @.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF)
+clean ::
+	@IfThere o.*	Then wipe @.o.* FR~C~V
+	IfThere @.^.o.* Then wipe @.^.o.* FR~C~V
+
+#@.^.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF)
+all: @.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF)
            libfile $(LibFileFlags) @.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF)
+           copy @.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF) @.^.o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF) ~CF~V
 
 # User-editable dependencies:
 
@@ -85,15 +98,17 @@ o.genannDDE26ARMv3A710:	c.genann
 o.genannDDE26ARMv3A710:	h.genann
 o.genannDDE26ARMv4SA:	c.genann
 o.genannDDE26ARMv4SA:	h.genann
-o.genannDDE32ARMv5XS:	c.genann
-o.genannDDE32ARMv5XS:	h.genann
+o.genannDDE32ARMv7MM:	c.genann
+o.genannDDE32ARMv7MM:	h.genann
 o.genannDDE:	c.genann
 o.genannDDE:	h.genann
+o.genannDDE32ARMv5XS:	c.genann
+o.genannDDE32ARMv5XS:	h.genann
 o.genannDDE32ARMv6Pi1:	c.genann
 o.genannDDE32ARMv6Pi1:	h.genann
 o.genannDDE32ARMv7Pi2:	c.genann
 o.genannDDE32ARMv7Pi2:	h.genann
 o.genannDDE32Pi3:	c.genann
 o.genannDDE32Pi3:	h.genann
-o.genannDDE32ARMv7MM:	c.genann
-o.genannDDE32ARMv7MM:	h.genann
+o.genannDDE32ARMv7A9:	c.genann
+o.genannDDE32ARMv7A9:	h.genann

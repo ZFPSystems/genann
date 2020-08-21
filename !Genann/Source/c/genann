@@ -63,7 +63,9 @@ double lookup[LOOKUP_SIZE];
 #define likely(x)       x
 #define unlikely(x)     x
 #define unused
+#ifndef RISC_OS
 #pragma warning(disable : 4996) /* For fscanf */
+#endif
 #endif
 
 

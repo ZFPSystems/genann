@@ -20,7 +20,7 @@ WimpSlot -min 1024k
 | Generic build (not so generic)
 
 | Build Generic ARM library (should run everywhere)
-amu THROWBACK=-throwback -f MakeFileDDE
+amu all THROWBACK=-throwback -f MakeFileDDE
 
 |
 | 26bit support:
@@ -51,22 +51,22 @@ amu THROWBACK=-throwback -f MakeFileDDE
 |
 
 | Build ARMv5 XScale optimized library (runs only on Iyonix PC with RISC OS 5.x)
-amu THROWBACK=-throwback USEARCH=5 USECPU=XScale USEAPCS32=1 USERPF=XS -f MakeFileDDE
+amu all THROWBACK=-throwback USEARCH=5 USECPU=XScale USEAPCS32=1 USERPF=XS -f MakeFileDDE
 
 | Build ARMv6 ARM11 optimized library (runs on RPi 1st generation with RISC OS 5.x)
-amu THROWBACK=-throwback USEARCH=6 USECPU=6 USEAPCS32=1 USERPF=Pi1 -f MakeFileDDE
+amu all THROWBACK=-throwback USEARCH=6 USECPU=6 USEAPCS32=1 USERPF=Pi1 -f MakeFileDDE
 
 | Build ARMv7a Cortex-A7 optimized library (runs on RPi early 2nd generation, v1.1 with RISC OS 5.x)
-amu THROWBACK=-throwback USEARCH=7 USECPU=7-A USEAPCS32=1 USERPF=Pi2 -f MakeFileDDE
+amu all THROWBACK=-throwback USEARCH=7 USECPU=7-A USEAPCS32=1 USERPF=Pi2 -f MakeFileDDE
 
 | Build ARMv8a Cortex-A53 optimized library (runs on RPi 2nd generation, v1.2, Pi3, ARMbook with RISC OS 5.x)
-amu THROWBACK=-throwback USECPU=Cortex-A53 USEAPCS32=1 USERPF=Pi3 -f MakeFileDDE
+amu all THROWBACK=-throwback USECPU=Cortex-A53 USEAPCS32=1 USERPF=Pi3 -f MakeFileDDE
 
 | Build ARMv8a Aarch32 Cortex-A7 optimized library (runs on RPi 4th generation with RISC OS 5.x)
 |amu THROWBACK=-throwback USEARCH=8 USECPU=Cortex-A72 USEAPCS32=1 USERPF=Pi4 -f MakeFileDDE
 
-| Build ARMv7a Cortex-A7 optimized library (runs on mini.m with RISC OS 5.x)
-amu THROWBACK=-throwback USEARCH=7 USECPU=Cortex-A7 USEAPCS32=1 USERPF=MM -f MakeFileDDE
+| Build ARMv7a Cortex-A9 optimized library (runs on ARMiniX, ARMX6, mini.m with RISC OS 5.x)
+amu all THROWBACK=-throwback USEARCH=7 USECPU=Cortex-A9 USEAPCS32=1 USERPF=A9 -f MakeFileDDE
 
 |
 | Final tocuhes:
@@ -77,4 +77,5 @@ IfThere @.h.genann Then copy @.h.genann @.^.h.genann F ~C
 
 | Reset
 dir <Return$Dir>
+Unset Return$Dir
 

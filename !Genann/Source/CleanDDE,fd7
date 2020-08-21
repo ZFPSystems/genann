@@ -1,0 +1,18 @@
+| Genann Library builder for Acorn/ROOL DDE
+| By Paolo Fabio Zaino
+
+| Temporarly set this directory as root
+Set Return$Dir &
+Dir <Obey$Dir>
+
+| Make the Library
+WimpSlot -min 1024k
+
+| Clean previousbuilds
+amu clean THROWBACK=-throwback -f MakeFileDDE
+
+| Reset
+dir <Return$Dir>
+Unset Return$Dir
+
+

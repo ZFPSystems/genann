@@ -2,7 +2,7 @@
 
 
 # Toolflags:
-CCFlags = -depend !Depend -throwback -c -strict -fa -fh -ansi
+CCFlags = -depend !Depend -throwback -c -strict -ff -fah -Wa -ansi
 LinkFlags = -AIF -rescan -Output $@
 squeezeflags =
 
@@ -50,8 +50,8 @@ C++Flags    += -Otime
 endif
 
 ifdef DDTDEBUG
-CCFlags     += -g -IC:^.DDTLib
-C++Flags    += -g -IC:^.DDTLib
+CCFlags     += -gflv -IC:^.DDTLib
+C++Flags    += -gflv -IC:^.DDTLib
 LinkFlags   += --debug C:^.DDTLib.o.DDTLib
 endif
 
@@ -66,20 +66,26 @@ endif
 
 
 # Final targets:
-@.^.!RunImage:   @.o.test
-        link $(LinkFlags) @.o.test C:o.stubs C:o.ansilib \
+@.^.!RunImage$(USRPF):   @.o.test$(USRPF)
+        link $(LinkFlags) @.o.test$(USRPF) C:o.stubs C:o.ansilib \
         GenannLib:o.genannDDE$(ObjPostFix1)$(ObjPostFix2)$(USRPF)
-        squeeze  @.^.!RunImage
+        squeeze  @.^.!RunImage$(USRPF)
 
 
 
 # User-editable dependencies:
 
 # Static dependencies:
-@.o.test:   @.c.test
-        cc $(CCFlags) -o @.o.test @.c.test
+@.o.test$(USRPF):   @.c.test
+        cc $(CCFlags) -o @.o.test$(USRPF) @.c.test
 
 # Dynamic dependencies:
+o.testMM:	c.test
+o.testMM:	GenannLib:h.genann
+o.testMM:	h.minctest
 o.test:	c.test
 o.test:	GenannLib:h.genann
 o.test:	h.minctest
+o.testA9:	c.test
+o.testA9:	GenannLib:h.genann
+o.testA9:	h.minctest

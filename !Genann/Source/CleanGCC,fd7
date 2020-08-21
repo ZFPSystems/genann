@@ -1,0 +1,13 @@
+| Genann Library builder for GCC
+| By Paolo Fabio Zaino
+
+| Temporarly set this directory as root
+Dir <Obey$Dir>
+
+| Make the static Library
+WimpSlot -min 16384k
+make clean -f MakeFileGCC
+
+| Reset
+dir &
+
