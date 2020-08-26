@@ -65,6 +65,16 @@ For GCC:
 
 For more info look at the Manual.PDF in this repo.
 
+-----------------------------------
+- Supported Programming Languages -
+-----------------------------------
+
+Right now you can use RISC OS Genann with:
+
+- ROOL DDE C
+- GCC C
+- GCC C++
+
 -------------
 - Tested On -
 -------------
@@ -72,29 +82,44 @@ For more info look at the Manual.PDF in this repo.
 - RComp Mini.M (i.MX6)		(RISC OS 5.27 ) [PASSED!]	(Tester Paolo F.Z.)
 - RComp ARMBook			(RISC OS 5.27 ) [To be tested]
 - RComp ARMini			(RISC OS      ) [To be tested]
+
 - Pi Zero			(RISC OS 5.xx ) [PASSED!]	(Tester Tristan M.)
 - RaspberryPi 3			(RISC OS 5.24 ) [PASSED!]	(Tester Paolo F.Z.)
 - RaspberryPi 2			(RISC OS 5.24 ) [To be tested]
 - RaspberryPi 1			(RISC OS 5.24 ) [To be tested]
+
 - PandaBoard			(RISC OS      ) [To be tested]
+
 - Castle Iyonix PC		(RISC OS 5.24 ) [PASSED!]	(Tester Paolo F.Z)
+
 - Acorn RiscPC 700 StrongARM	(RISC OS 4.39 ) [To be tested]
 - Acorn RiscPC 600 StrongARM	(RISC OS 6.00 ) [To be tested]
-- Castle Kinetic RiscPC 700	(RISC OS 4.03 ) [To be tested]
+- Acorn RiscPC 700 Kinetic	(RISC OS 4.03 ) [To be tested]
+
 - Acorn A3010			(RISC OS 3.10*) [To be tested]
 - Acorn A3020			(RISC OS 3.11*) [To be tested]
+
 - Acorn A5000 (ARM3)		(RISC OS 3.10*) [To be tested]
 - Acorn Archimedes 310 (ARM3)	(RISC OS 3.11*) [To be tested]
+
 - MiSTer Archie Core A3000	(RISC OS 3.11*) [To be tested]
 
 Emulators
 - VirtualAcorn Adj-SA StrongARM	(RISC OS 4.39 ) [PASSED!]	(Tester Paolo F.Z.)
 - VirtualAcorn Adj-SA ARMFE7500	(RISC OS 4.39 ) [PASSED!]	(Tester Paolo F.Z.)
-- RPMEmu			(RISC OS 5.24 ) [To be tested]
+
+- RPMEmu			(RISC OS 5.24 ) [PASSED!]	(Tester Paolo F.Z.)
+
 - VirtualA5000			(RISC OS 3.11*) [To be tested]
+
 - ArchiEmu ARM3			(RISC OS 3.11*) [NOT PASSED!]	(Tester Paolo F.Z.)
 
-Tests consists of running the generic version of the test suite and the specific version for the ARM architecture on the tested system, plus run all the generic examples. If all code completes succesfully and results are as expected then the test is considered passed, otherwise is not passed.
+Tests consists of:
+
+- Running the generic version of the test suite and the specific version for the ARM architecture on the tested system
+- Run all the generic examples
+
+If all code completes succesfully and results are as expected then the test is considered passed, otherwise is not passed.
 
 * Please Note: All RISC OS 3.1x systems requires ROOL DDE CLib to be able to run code using Genann library.
 

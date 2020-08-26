@@ -33,7 +33,11 @@ Genann is also threadsafe so, in theory, you could use it with libraries like !V
 --------------
 - HOW TO USE -
 --------------
-For info and details on how to use this library with your own code please look at the Docs directory contained in the !Genann Library directory, thanks.
+For info and details on how to use this library with your own code please look at the Docs directory contained in the !Genann Library directory.
+
+This Library also come with a manual in PDF format, install Genann-Manuals to have it in your $.Manuals directory.
+
+thanks.
 
 ---------------
 - FINAL NOTES -

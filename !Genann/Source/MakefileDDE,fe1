@@ -112,3 +112,5 @@ o.genannDDE32Pi3:	c.genann
 o.genannDDE32Pi3:	h.genann
 o.genannDDE32ARMv7A9:	c.genann
 o.genannDDE32ARMv7A9:	h.genann
+o.genannDDE32ARMv4SA:	c.genann
+o.genannDDE32ARMv4SA:	h.genann

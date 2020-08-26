@@ -89,3 +89,6 @@ o.test:	h.minctest
 o.testA9:	c.test
 o.testA9:	GenannLib:h.genann
 o.testA9:	h.minctest
+o.testPi3:	c.test
+o.testPi3:	GenannLib:h.genann
+o.testPi3:	h.minctest

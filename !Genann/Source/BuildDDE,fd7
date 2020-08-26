@@ -20,7 +20,10 @@ WimpSlot -min 1024k
 | Generic build (not so generic)
 
 | Build Generic ARM library (should run everywhere)
+echo ----- Building Generic
 amu all THROWBACK=-throwback -f MakeFileDDE
+echo -----
+echo
 
 |
 | 26bit support:
@@ -29,44 +32,68 @@ amu all THROWBACK=-throwback -f MakeFileDDE
 | you would only mix stuff up and get link errors in the end
 
 | Build ARMv2 ARM2 optimized library (runs only on A305/A310/A3000 with RISC OS 3.x)
-|amu THROWBACK=-throwback USEARCH=2 USECPU=ARM2 USEAPCS26=1 USERPF=A2 -f MakeFileDDE
+|amu all THROWBACK=-throwback USEARCH=2 USECPU=ARM2 USEAPCS26=1 USERPF=A2 -f MakeFileDDE
 
 | Build ARMv2a ARM250 optimized library (runs only on A30x0 with RISC OS 3.x)
-|amu THROWBACK=-throwback USEARCH=2a USECPU=2a USEAPCS26=1 USERPF=A250 -f MakeFileDDE
+|amu all THROWBACK=-throwback USEARCH=2a USECPU=2a USEAPCS26=1 USERPF=A250 -f MakeFileDDE
 
 | Build ARMv2a ARM3 optimized library (runs only on A305/A310/A400/A3000/A5000/A540 with ARM3 and RISC OS 3.x)
-|amu THROWBACK=-throwback USEARCH=2a USECPU=ARM3 USEAPCS26=1 USERPF=A3 -f MakeFileDDE
+|amu all THROWBACK=-throwback USEARCH=2a USECPU=ARM3 USEAPCS26=1 USERPF=A3 -f MakeFileDDE
 
 | Build ARMv3 ARM600 optimized library (runs only on RiscPC 600/700 with RISC OS 3.x/4.x)
-|amu THROWBACK=-throwback USEARCH=3 USECPU=ARM610 USEAPCS26=1 USERPF=A610 -f MakeFileDDE
+|amu all THROWBACK=-throwback USEARCH=3 USECPU=ARM610 USEAPCS26=1 USERPF=A610 -f MakeFileDDE
 
 | Build ARMv3 ARM700 optimized library (runs only on RiscPC 700 with RISC OS 3.x/4.x)
-|amu THROWBACK=-throwback USEARCH=3 USECPU=ARM710 USEAPCS26=1 USERPF=A710 -f MakeFileDDE
+|amu all THROWBACK=-throwback USEARCH=3 USECPU=ARM710 USEAPCS26=1 USERPF=A710 -f MakeFileDDE
 
 | Build ARMv4 StrongARM optimized library (runs only on RiscPC with StrongARM RISC OS 3.7/4.x)
-|amu THROWBACK=-throwback USEARCH=4 USECPU=StrongARM USEAPCS26=1 USERPF=SA -f MakeFileDDE
+|amu all THROWBACK=-throwback USEARCH=4 USECPU=StrongARM USEAPCS26=1 USERPF=SA -f MakeFileDDE
 
 |
 | 32bit support:
 |
 
+| Build ARMv4 StrongARM optimized library (runs on RPCEmu/VirtualAcorn/RiscPC with StrongARM RISC OS 4.39/5.xy)
+echo ----- Building for StrongARM 32bit
+amu all THROWBACK=-throwback USEARCH=4 USECPU=StrongARM USEAPCS32=1 USERPF=SA -f MakeFileDDE
+echo -----
+echo
+
 | Build ARMv5 XScale optimized library (runs only on Iyonix PC with RISC OS 5.x)
+echo ----- Building for XScale 32bit
 amu all THROWBACK=-throwback USEARCH=5 USECPU=XScale USEAPCS32=1 USERPF=XS -f MakeFileDDE
+echo -----
+echo
 
 | Build ARMv6 ARM11 optimized library (runs on RPi 1st generation with RISC OS 5.x)
+echo ----- Building for ARM11 32bit
 amu all THROWBACK=-throwback USEARCH=6 USECPU=6 USEAPCS32=1 USERPF=Pi1 -f MakeFileDDE
+echo -----
+echo
 
 | Build ARMv7a Cortex-A7 optimized library (runs on RPi early 2nd generation, v1.1 with RISC OS 5.x)
+echo ----- Building for Cortex-A7
 amu all THROWBACK=-throwback USEARCH=7 USECPU=7-A USEAPCS32=1 USERPF=Pi2 -f MakeFileDDE
+echo -----
+echo
 
 | Build ARMv8a Cortex-A53 optimized library (runs on RPi 2nd generation, v1.2, Pi3, ARMbook with RISC OS 5.x)
+echo ----- Building for Cortext-A53
 amu all THROWBACK=-throwback USECPU=Cortex-A53 USEAPCS32=1 USERPF=Pi3 -f MakeFileDDE
+echo -----
+echo
 
-| Build ARMv8a Aarch32 Cortex-A7 optimized library (runs on RPi 4th generation with RISC OS 5.x)
+| Build ARMv8a Aarch32 Cortex-A72 optimized library (runs on RPi 4th generation with RISC OS 5.x)
+echo ----- Building for Cortex-A72 AArch32
 |amu THROWBACK=-throwback USEARCH=8 USECPU=Cortex-A72 USEAPCS32=1 USERPF=Pi4 -f MakeFileDDE
+echo -----
+echo
 
 | Build ARMv7a Cortex-A9 optimized library (runs on ARMiniX, ARMX6, mini.m with RISC OS 5.x)
+echo ----- Building for Cortex-A9
 amu all THROWBACK=-throwback USEARCH=7 USECPU=Cortex-A9 USEAPCS32=1 USERPF=A9 -f MakeFileDDE
+echo -----
+echo
 
 |
 | Final tocuhes:

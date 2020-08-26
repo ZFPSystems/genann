@@ -8,6 +8,14 @@ artificial neural networks (ANN) in C. Its primary focus is on being simple,
 fast, reliable, and hackable. It achieves this by providing only the necessary
 functions and little extra.
 
+This is the RISC OS port of Gennan and NOT the original library!
+
+This port is created and optimized to run only on RISC OS Operating System and
+ARM architecture, so please refer to the original Gennan Library for use and
+ports to other platforms.
+
+Port Maintainer: Paolo Fabio Zaino
+
 ## Features
 
 - **ANSI C with no dependencies**.
@@ -147,17 +155,19 @@ Where X Y are optionals and should be specified only when you want to use an arc
 
 X can be either 26 or 32
 
-Y can be ARMv2 or ARMv4 or ARMv5 or ARMv6 or ARMv7
+Y can be ARMv5XS (For XScale CPUs for example) or ARMv6Pi1 (For Raspberry Pi 1) or ARMv7A9 (for ARMX6, Mini.m etc,) or ARMv7Pi2 (for Raspberry Pi2) or Pi3 (for Raspberry Pi 3, 3B+ and ARMBook)
+
+Please Note: If you are planning on build portable code across multiple RISC OS 5 and ARM architecture then DO NOT specify X and Y postfix and use just o.GenannDDE to link to your code!
 
 So for example:
 ```Make
 	link blah blah GenannLib:o.genannDDE
 ```
 ```Make
-	link blah blah GenannLib:o.genannDDE26ARMv2
+	link blah blah GenannLib:o.genannDDE32ARMv5XS
 ```
 ```Make
-	link blah blah GenannLib:o.genannDDE32ARMv7
+	link blah blah GenannLib:o.genannDDE32ARMv7A9
 ```
 
 For GCC:
@@ -169,6 +179,7 @@ And then use the variables above as:
 ```Make
 	gcc $(CFLAGS) blah blah $(LDFLAGS)
 ```
+On GCC you can also use the Shared Lib if you want.
 
 ## Hints
 

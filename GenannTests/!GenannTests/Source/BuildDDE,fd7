@@ -14,6 +14,9 @@ amu THROWBACK=-throwback -f MakeFileDDE
 | Build for Cortex-A9
 amu THROWBACK=-throwback USEARCH=7 USECPU=Cortex-A9 USEAPCS32=1 USERPF=A9 OPTISPACE=1 -f MakeFileDDE
 
+| Build for Raspberry-Pi 3
+amu THROWBACK=-throwback USECPU=Cortex-A53 USEAPCS32=1 USERPF=Pi3 OPTISPACE=1 -f MakeFileDDE
+
 | Reset
 dir <Return$Dir>
 
